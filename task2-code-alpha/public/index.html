@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pulse — Sign In</title>
+  <meta name="description" content="Join Pulse, the modern social media platform to share moments, connect with friends, and discover new people."/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <style>
+    body { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  </style>
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-box scale-in">
+    <div class="auth-logo">
+      <h1><span class="logo-icon">⚡</span> Pulse</h1>
+      <p>Connect with the world around you</p>
+    </div>
+
+    <!-- <div class="auth-tabs">
+      <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">Sign In</div>
+      <div class="auth-tab" id="tab-register" onclick="switchTab('register')">Create Account</div>
+    </div> -->
+    <div class="auth-btn-tabs">
+  <button class="auth-btn-tab active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+  <button class="auth-btn-tab" id="tab-register" onclick="switchTab('register')">Create Account</button>
+</div>
+
+    <!-- Login Form -->
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="login-email">Email Address</label>
+        <input id="login-email" type="email" class="input" placeholder="you@example.com" required/>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input id="login-password" type="password" class="input" placeholder="••••••••" required/>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:6px" id="login-btn">
+        Sign In
+      </button>
+      <div class="auth-error" id="login-error"></div>
+    </form>
+
+    <!-- Register Form -->
+    <form id="register-form" style="display:none" onsubmit="handleRegister(event)">
+      <div class="form-group">
+        <label for="reg-username">Username</label>
+        <input id="reg-username" type="text" class="input" placeholder="Choose a username" required/>
+      </div>
+      <div class="form-group">
+        <label for="reg-email">Email Address</label>
+        <input id="reg-email" type="email" class="input" placeholder="you@example.com" required/>
+      </div>
+      <div class="form-group">
+        <label for="reg-password">Password</label>
+        <input id="reg-password" type="password" class="input" placeholder="Min. 6 characters" minlength="6" required/>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:6px" id="reg-btn">
+        Create Account
+      </button>
+      <div class="auth-error" id="reg-error"></div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pulse — Profile</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <a class="logo" href="/feed.html"><span class="logo-icon">⚡</span> Pulse</a>
+  <div class="navbar-right">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <div class="user-menu-wrap">
+      <div class="avatar" id="nav-avatar" onclick="goToMyProfile()"></div>
+      <div class="user-dropdown" id="user-dropdown">
+        <div class="user-dropdown-item" onclick="goToMyProfile()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My Profile
+        </div>
+        <div class="user-dropdown-item" onclick="window.location.href='/feed.html'">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          Home Feed
+        </div>
+        <div class="user-dropdown-item danger" onclick="logout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="layout wide" style="max-width:720px">
+  <!-- Profile Card -->
+  <div class="card" id="profile-card">
+    <div class="profile-banner" id="profile-banner"></div>
+    <div class="profile-info">
+      <div class="profile-avatar" id="profile-avatar"></div>
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <div class="profile-username" id="profile-username"></div>
+            <span class="badge badge-purple" id="verified-badge" style="display:none">✓ Verified</span>
+          </div>
+          <div class="profile-handle" id="profile-handle"></div>
+          <div class="profile-bio" id="profile-bio"></div>
+          <div class="profile-meta" id="profile-meta"></div>
+          <div class="profile-stats">
+            <div class="stat">
+              <div class="stat-value" id="stat-posts">0</div>
+              <div class="stat-label">Posts</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value" id="stat-followers">0</div>
+              <div class="stat-label">Followers</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value" id="stat-following">0</div>
+              <div class="stat-label">Following</div>
+            </div>
+          </div>
+        </div>
+        <div class="profile-actions" id="profile-actions"></div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="profile-tabs" id="profile-tabs">
+        <div class="profile-tab active" onclick="switchProfileTab('posts',this)">Posts</div>
+        <div class="profile-tab" onclick="switchProfileTab('replies',this)">Replies</div>
+        <div class="profile-tab" onclick="switchProfileTab('media',this)">Media</div>
+        <div class="profile-tab" onclick="switchProfileTab('likes',this)">Likes</div>
+        <div class="profile-tab" onclick="switchProfileTab('saved',this)">Saved</div>
+      </div>
+
+      <!-- Edit Profile (own profile) -->
+      <div id="edit-form" style="display:none;margin-top:20px;border-top:1px solid var(--border);padding-top:20px">
+        <div class="form-group">
+          <label>Bio</label>
+          <textarea id="edit-bio" class="input" placeholder="Tell the world about yourself…" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Avatar URL</label>
+          <input id="edit-avatar" type="text" class="input" placeholder="https://…"/>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-primary btn-sm" onclick="saveProfile()">Save Changes</button>
+          <button class="btn btn-ghost btn-sm" onclick="toggleEdit(false)">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Posts -->
+  <div style="margin-top:20px" id="posts-section">
+    <div id="user-posts"><div class="spinner"></div></div>
+  </div>
+</div>
+
+<!-- Mobile bottom nav -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-item" onclick="window.location.href='/feed.html'">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    Home
+  </div>
+  <div class="mobile-nav-item" onclick="window.location.href='/feed.html'">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    Explore
+  </div>
+  <div class="mobile-nav-item active" onclick="goToMyProfile()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Profile
+  </div>
+</nav>
+
+<div class="toast" id="toast"></div>
+<script src="/js/profile.js"></script>
+</body>
+</html>
